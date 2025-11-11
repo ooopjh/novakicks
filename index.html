@@ -1,0 +1,224 @@
+<!-- Futuristic Sneaker Shop - single-file HTML/CSS/JS
+     - Ultra-attractive, responsive landing + product grid
+     - Modern UI: glassmorphism, gradients, micro-animations
+     - Usage: save as index.html and open locally or deploy to Netlify/Vercel/GitHub Pages
+-->
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaKicks — Futuristic Shoes & Sneakers</title>
+  <meta name="description" content="Ultra-futuristic sneakers, high performance & designer looks — NovaKicks." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f17; --card:#0f1720; --glass: rgba(255,255,255,0.06);
+      --accent1: linear-gradient(135deg,#7c5cff 0%, #00e0ff 100%);
+      --accent2: linear-gradient(135deg,#ff6b6b 0%, #ffd36b 100%);
+      --glass-border: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.03);
+      --glass-strong: rgba(255,255,255,0.08);
+    }
+    *{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    html,body{height:100%;margin:0;background:radial-gradient(1000px 800px at 10% 10%, rgba(124,92,255,0.12), transparent), linear-gradient(180deg,#05060a 0%, #0b0f17 100%);color:#e6eef8}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:36px auto;padding:24px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:52px;height:52px;border-radius:12px;background:var(--accent1);display:grid;place-items:center;font-weight:800;color:#04111b}
+    .brand h1{margin:0;font-size:20px;letter-spacing:0.4px}
+    nav{display:flex;gap:14px;align-items:center}
+    .btn{background:var(--glass);padding:10px 14px;border-radius:12px;border:1px solid var(--glass-border);cursor:pointer}
+    .cta{background:var(--accent1);padding:10px 14px;border-radius:12px;border:none;color:#04111b;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(124,92,255,0.16)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;margin-top:28px}
+    .hero .eyebrow{font-weight:600;color:#9fb7ff;font-size:13px}
+    .hero h2{font-size:42px;margin:8px 0 12px;line-height:1.02}
+    .hero p{opacity:0.85;margin:0 0 18px}
+    .controls{display:flex;gap:12px}
+    .search{display:flex;gap:8px;align-items:center;background:var(--glass-2);padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .search input{background:transparent;border:none;outline:none;color:inherit}
+
+    /* Showcase card */
+    .showcase{background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:18px;border:1px solid var(--glass-border);backdrop-filter: blur(8px);}
+    .shoe-visual{height:320px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .shoe-visual img{max-width:110%;transform:rotate(-10deg);filter:drop-shadow(0 30px 40px rgba(0,0,0,0.6));transition:transform .6s}
+    .shoe-visual:hover img{transform:rotate(-6deg) translateX(6px) scale(1.02)}
+
+    /* Products grid */
+    .toolbar{display:flex;justify-content:space-between;align-items:center;margin:30px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:14px;border:1px solid var(--glass-border);transition:transform .2s;cursor:pointer}
+    .card:hover{transform:translateY(-6px)}
+    .card img{width:100%;border-radius:10px;object-fit:cover}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+    .price{font-weight:700}
+    .badge{padding:6px 8px;border-radius:999px;font-size:12px;background:linear-gradient(90deg, rgba(0,0,0,0.18), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.03)}
+
+    /* Footer */
+    footer{margin-top:40px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid var(--glass-border);display:flex;justify-content:space-between;align-items:center}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .hero .showcase{order: -1}
+    }
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(0deg, rgba(2,6,23,0.6), rgba(2,6,23,0.6));}
+    .modal.open{display:flex}
+    .modal-card{width:92%;max-width:920px;background:linear-gradient(180deg,#071025, #0b1220);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.04)}
+
+    /* micro animations */
+    .glow{position:relative}
+    .glow::after{content:'';position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(90deg, rgba(124,92,255,0.08), rgba(0,224,255,0.06));filter:blur(18px);opacity:0;transition:opacity .25s}
+    .glow:hover::after{opacity:1}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">NK</div>
+        <div>
+          <h1>NovaKicks</h1>
+          <div style="font-size:12px;color:#98b7ff;margin-top:3px">Futuristic shoes & next-gen sneakers</div>
+        </div>
+      </div>
+      <nav>
+        <div class="btn">Collections</div>
+        <div class="btn">Customise</div>
+        <div class="btn">Support</div>
+        <button class="cta" id="open-shop">Shop Now</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Limited Drop • 2026 Collection</div>
+          <h2>Step into tomorrow — <span style="background:linear-gradient(90deg,#fff 0%,#98b7ff 100%);-webkit-background-clip:text;color:transparent">ultra‑futuristic</span> sneakers</h2>
+          <p>High-performance materials, glowing mid-sole options, and AR-ready designs. Wear the future — comfort + tech + style in one shoe.</p>
+
+          <div class="controls">
+            <div class="search" role="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:.8"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><input placeholder="Search models, sizes or tech" id="q"></div>
+            <button class="btn" id="filter">Filters</button>
+            <button class="cta" id="buy-hero">Explore Drop</button>
+          </div>
+
+          <div style="margin-top:20px;font-size:13px;color:#9fb7ff">Free shipping India • 30-day returns • Secure payments</div>
+        </div>
+
+        <div class="showcase glass showcase" aria-hidden="true">
+          <div class="shoe-visual glow">
+            <img src="https://images.unsplash.com/photo-1600180758890-5a9d9a1d2c49?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=8c8b9dfb4f" alt="futuristic sneaker">
+          </div>
+        </div>
+      </section>
+
+      <section class="products">
+        <div class="toolbar">
+          <div style="font-weight:700">Trending Models</div>
+          <div style="display:flex;gap:12px">
+            <div class="badge">Glow Midsole</div>
+            <div class="badge">AR Tag</div>
+            <div class="badge">Limited</div>
+          </div>
+        </div>
+
+        <div class="grid" id="products">
+          <!-- JS will populate product cards -->
+        </div>
+
+        <div style="text-align:center;margin-top:18px">
+          <button class="btn" id="load-more">Load more</button>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div>© NovaKicks 2025 — Built for speed & style</div>
+      <div style="display:flex;gap:12px"><div class="btn">Terms</div><div class="btn">Privacy</div></div>
+    </footer>
+  </div>
+
+  <!-- Modal template -->
+  <div class="modal" id="modal">
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong id="modal-title">Product</strong><button class="btn" id="close-modal">Close</button></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="min-height:220px;background:var(--glass);border-radius:8px"></div>
+        <div>
+          <div style="font-weight:800;font-size:20px;margin-bottom:6px" id="modal-name">Model X-01</div>
+          <div style="opacity:.85;margin-bottom:10px" id="modal-desc">A hybrid runner engineered for urban flight.</div>
+          <div style="font-weight:900;font-size:18px;margin-bottom:8px" id="modal-price">₹9,999</div>
+          <div style="display:flex;gap:8px"><button class="cta" id="add-cart">Add to cart</button><button class="btn" id="buy-now">Buy now</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const productsData = [
+      {id:1,name:'X-01 Nova Runner',price:9999,tag:'Limited',img:'https://images.unsplash.com/photo-1600180758890-5a9d9a1d2c49?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=8c8b9dfb4f',desc:'Carbon-fiber midsole, reflective weave.'},
+      {id:2,name:'AeroLite V2',price:7499,tag:'Glow Midsole',img:'https://images.unsplash.com/photo-1519741490408-1001f2f4f3c7?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6b8f2f2f',desc:'Featherweight knit with reactive cushioning.'},
+      {id:3,name:'Orbit Runner',price:11999,tag:'AR Tag',img:'https://images.unsplash.com/photo-1528701800489-476b6b4b0b95?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3a2b2c1d',desc:'Smart-sensor ready, step analytics.'},
+      {id:4,name:'Phantom Slip',price:8999,tag:'Comfort',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=e3a9a2b',desc:'Slip-on, ergonomic footbed.'}
+    ];
+
+    const productsEl = document.getElementById('products');
+    function render(products){
+      productsEl.innerHTML = '';
+      products.forEach(p=>{
+        const card = document.createElement('div');card.className='card';
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <div class="meta"><div>
+            <div style="font-weight:800">${p.name}</div>
+            <div style="opacity:.78;font-size:13px">${p.desc}</div>
+          </div>
+          <div style="text-align:right"><div class="price">₹${p.price.toLocaleString()}</div><div style="margin-top:6px" class="badge">${p.tag}</div></div></div>`;
+        card.addEventListener('click',()=>openModal(p));
+        productsEl.appendChild(card);
+      })
+    }
+    render(productsData);
+
+    // Modal logic
+    const modal = document.getElementById('modal');
+    function openModal(p){
+      modal.classList.add('open');
+      document.getElementById('modal-title').innerText = p.name;
+      document.getElementById('modal-name').innerText = p.name;
+      document.getElementById('modal-desc').innerText = p.desc;
+      document.getElementById('modal-price').innerText = '₹'+p.price.toLocaleString();
+    }
+    document.getElementById('close-modal').addEventListener('click',()=>modal.classList.remove('open'));
+    document.getElementById('modal').addEventListener('click',(e)=>{if(e.target===modal)modal.classList.remove('open')});
+
+    // Hero actions
+    document.getElementById('open-shop').addEventListener('click', ()=>{document.getElementById('q').focus();window.scrollTo({top:600,behavior:'smooth'})});
+    document.getElementById('buy-hero').addEventListener('click', ()=>{openModal(productsData[0])});
+
+    // Simple search
+    document.getElementById('q').addEventListener('input', (e)=>{
+      const q = e.target.value.trim().toLowerCase();
+      render(productsData.filter(p=>p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)));
+    });
+
+    // Load more - demo: duplicate
+    document.getElementById('load-more').addEventListener('click', ()=>{
+      const more = productsData.map(p=>({...p,id:Math.random()}));
+      render(productsData.concat(more));
+    });
+
+    // Keyboard: Esc to close
+    document.addEventListener('keydown',(e)=>{if(e.key==='Escape')modal.classList.remove('open')});
+  </script>
+</body>
+</html>

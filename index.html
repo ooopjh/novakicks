@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaKicks Pro — Futuristic Sneakers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Inter',sans-serif;
+      background:radial-gradient(circle at 30% 30%,#0a0a0f,#050507 80%);
+      color:#fff;
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+    header{
+      text-align:center;
+      padding:60px 20px 20px;
+    }
+    .logo{
+      width:90px;
+      height:90px;
+      margin:0 auto 15px;
+      border-radius:50%;
+      background:radial-gradient(circle,#0ff 0%,#6f00ff 80%);
+      box-shadow:0 0 25px rgba(0,255,255,0.6),0 0 60px rgba(111,0,255,0.4);
+      animation:pulse 3s infinite ease-in-out;
+    }
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 20px rgba(0,255,255,0.4),0 0 40px rgba(111,0,255,0.2)}
+      50%{box-shadow:0 0 40px rgba(0,255,255,0.8),0 0 80px rgba(111,0,255,0.6)}
+    }
+    h1{
+      font-family:'Orbitron',sans-serif;
+      font-size:1.8rem;
+      letter-spacing:2px;
+      color:#0ff;
+      text-shadow:0 0 8px #0ff;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
+      padding:60px 8%;
+    }
+    .card{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:16px;
+      backdrop-filter:blur(10px);
+      transition:transform .4s, box-shadow .4s;
+      overflow:hidden;
+    }
+    .card:hover{
+      transform:translateY(-10px) scale(1.03);
+      box-shadow:0 0 25px rgba(0,255,255,0.2),0 0 60px rgba(111,0,255,0.1);
+    }
+    .card img{
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+    .card .info{
+      padding:18px;
+      text-align:center;
+    }
+    .card h2{
+      font-family:'Orbitron';
+      font-size:1.2rem;
+      color:#fff;
+      margin-bottom:8px;
+    }
+    .card p{
+      font-size:0.9rem;
+      color:#bbb;
+      margin-bottom:12px;
+    }
+    .btn{
+      background:linear-gradient(90deg,#00ffff,#6f00ff);
+      color:#fff;
+      padding:10px 22px;
+      border:none;
+      border-radius:25px;
+      font-weight:600;
+      letter-spacing:0.5px;
+      cursor:pointer;
+      transition:box-shadow .3s,transform .3s;
+    }
+    .btn:hover{
+      box-shadow:0 0 15px #00ffff,0 0 25px #6f00ff;
+      transform:translateY(-3px);
+    }
+    footer{
+      text-align:center;
+      padding:30px 10px;
+      font-size:0.85rem;
+      color:#666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"></div>
+    <h1>NovaKicks Pro</h1>
+  </header>
+  <section class="grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80"><div class="info"><h2>CyberFlex 01</h2><p>Lightweight futuristic design.</p><button class="btn" onclick="location.href='#'">Shop Now</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80"><div class="info"><h2>NeonRunner X</h2><p>Engineered for city nights.</p><button class="btn" onclick="location.href='#'">Shop Now</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1600180758890-6d59b6f338cd?auto=format&fit=crop&w=800&q=80"><div class="info"><h2>AeroVolt</h2><p>Hybrid energy return tech.</p><button class="btn" onclick="location.href='#'">Shop Now</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1618354691388-0e6c472b8d80?auto=format&fit=crop&w=800&q=80"><div class="info"><h2>QuantumStep</h2><p>Adaptive grip control sole.</p><button class="btn" onclick="location.href='#'">Shop Now</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1596464716121-2f5b7c6e3dba?auto=format&fit=crop&w=800&q=80"><div class="info"><h2>NeoPulse Z</h2><p>Future‑ready comfort fit.</p><button class="btn" onclick="location.href='#'">Shop Now</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80"><div class="info"><h2>GlideCore 3</h2><p>Precision engineered shape.</p><button class="btn" onclick="location.href='#'">Shop Now</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1606813902914-1f7c1e2ed35a?auto=format&fit=crop&w=800&q=80"><div class="info"><h2>VantaX Prime</h2><p>Breathable mesh system.</p><button class="btn" onclick="location.href='#'">Shop Now</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1600180758890-6d59b6f338cd?auto=format&fit=crop&w=800&q=80"><div class="info"><h2>PhantomWave</h2><p>Ultra‑light carbon sole.</p><button class="btn" onclick="location.href='#'">Shop Now</button></div></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1606813902914-1f7c1e2ed35a?auto=format&fit=crop&w=800&q=80"><div class="info"><h2>NovaEdge</h2><p>Dynamic neon reflect lines.</p><button class="btn" onclick="location.href='#'">Shop Now</button></div></div>
+  </section>
+  <footer>
+    © 2025 NovaKicks Pro — Designed for the Future
+  </footer>
+</body>
+</html>
